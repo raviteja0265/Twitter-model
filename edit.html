@@ -9,6 +9,13 @@
         text-align: center;
         background-color: #7eacf7;
     }
+    .header {
+        position: sticky;
+        margin: 0px;
+        color: #f9fafc;
+        background-color: #0c1b33;
+        text-align: center;
+    }
     .name {
         padding: 5px;
         margin: 6px;
@@ -24,7 +31,10 @@
     }
     </style>
     <body>
-        Edit and update user information here<br/>
+        <div class="header">
+            <img src="C:/Users/raviteja/PycharmProjects/Assignment03/brackets/logo.png" alt="twitter logo" width="30" height="30"><br/>
+        </div>
+        <h4>Edit and update user information here<br/></h4>
         <form method="post" action="/edit">
             <div class="name">
                 Name: <input type="text" name="username" value="{{ myuser.name }}" readonly/><br/>

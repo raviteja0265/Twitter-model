@@ -25,7 +25,7 @@ class EditTweet(webapp2.RequestHandler):
                 'login_url': users.create_login_url(self.request.url)
             }
 
-            template = JINJA_ENVIRONMENT.get_template('loginpage.html')
+            template = JINJA_ENVIRONMENT.get_template('twitterhome.html')
             self.response.write(template.render(template_values))
             return
         usertweet = self.request.get('usertweet')

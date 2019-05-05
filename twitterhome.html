@@ -7,19 +7,25 @@
     body {
         background-color: #7eacf7;
     }
-    h2 {
-        text-align: center;
-    }
-    .gallery {
+    .header {
+        position: sticky;
+        margin: 0px;
+        color: #f9fafc;
+        background-color: #0c1b33;
         text-align: center;
     }
     .right {
         text-align: right;
         padding: 20px;
-
+        box-sizing: border-box;
+        position: relative;
+        bottom: 125px;
     }
     .center {
+        font-size: 17px;
         box-sizing: border-box;
+        position: relative;
+        bottom: 125px;
     }
     input[type=submit] {
         background-color: #05ba83;
@@ -27,27 +33,32 @@
         cursor: pointer;
         padding: 10px 20px;
     }
-    .bottom {
+    input[type=submit]:hover {
+        background-color: #015651;
+        color: #cccccc;
+    }
+    .footer {
+        background-color: #0c1b33;
+        color: #f9fafc;
+        font-size: 22px;
+        padding: 56px;
         text-align: right;
     }
     </style>
 <body>
-    <div class="gallery">
-        <img src="twitter-logo.png" alt="twitter logo" width="100" height="100">
-    </div>
-
-    <div>
+    <div class="header">
+        <img src="C:/Users/raviteja/PycharmProjects/Assignment03/brackets/logo.png" alt="twitter logo" width="30" height="30">
         <h2>Welcome to Twitter</h2>
         <br/>
     </div>
-    {% if user %}
+    {% if myuser %}
     <p>welcome back {{ myuser.name }}</p><br/>
     {% endif %}
     <h4>To Edit and Update user information <a href="/edit">click here</a></h4>
     <form method="post" action="/twitterhome">
         <div class="right">
-            <input type="text" name="search" placeholder="Enter here"><br/>
-            <input type="submit" value="search" name="button"/>
+            <input type="text" name="Search" placeholder="Enter here"><br/>
+            <input type="submit" value="Search" name="button"/>
         </div>
     </form>
     <br/>
@@ -60,7 +71,7 @@
     </form>
     <br/>
 
-    {% for i in usertweets %}
+    {% for i in tweets %}
     Tweets:{{ loop.index }}<br/>
     name:{{ i.name }}<br/>
     <a href="/edit?tweet={{ i.tweets }}">tweet: {{ i.tweets }}</a><br/>
@@ -71,12 +82,12 @@
     {% endfor %}
 
     <div>
-        {% for search in search_name %}
+        {% for Search in name_search %}
         <div>
-            Search Result
+            Search result
         </div>
         <div>
-            <h4><a href="/profile?name={{ search.name }}">{{ search.name }}</a></h4>
+            <h4><a href="/profile?name={{ Search.name }}">{{ Search.name }}</a></h4>
         </div>
     </div>
     {% endfor %}
@@ -85,7 +96,7 @@
         <p>{{ i }}</p>
     </div>
     {% endfor %}
-    <div class="bottom">
+    <div class="footer">
         Goodbye, You can logout <a href="{{ logout_url }}">Here</a>
     </div>
 </body>

@@ -7,25 +7,35 @@
     body {
         background-color: #7eacf7;
     }
+    .header {
+        position: sticky;
+        margin: 0px;
+        color: #f9fafc;
+        background-color: #0c1b33;
+        text-align: center;
+    }
     h3 {
         text-align: center;
     }
     </style>
     <body>
+        <div class="header">
+            <img src="C:/Users/raviteja/PycharmProjects/Assignment03/brackets/logo.png" alt="twitter logo" width="30" height="30"><br/>
+        </div>
         <div>
             <h3>New User Sign Up</h3>
-            <form method="post" action="/signup">
+            <form method="post" action="/">
                 <div>
                     username: <input type="text" name="name" placeholder="Username" required>
                 </div>
                 <div>
-                    DOB: <input type="date" name="DOB" placeholder="dd/mm/yyyy">
+                    DOB: <input type="date" name="dateofbirth" placeholder="dd/mm/yyyy">
                 </div>
                 <div>
                     <label>Bio:</label>
-                    <textarea type="text" name="Bio" maxlength="280" placeholder="About Yourself"></textarea>
+                    <textarea type="text" name="bio" maxlength="280" placeholder="About Yourself"></textarea>
                 </div>
-                <input type="submit" value="signup" name="button"/>
+                <input type="submit" value="SignUp" name="button"/>
             </form>
         </div>
         <br/>

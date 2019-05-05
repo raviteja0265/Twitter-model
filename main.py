@@ -3,6 +3,7 @@ import jinja2
 import webapp2
 from google.appengine.api import users
 from google.appengine.ext import ndb
+from datetime import datetime
 
 from myuser import MyUser
 from usertweets import UserTweets
@@ -54,8 +55,8 @@ class MainPage(webapp2.RequestHandler):
             template_values = {
                 'logout_url': users.create_logout_url(self.request.url),
                 'usertweets': myuser.usertweets,
-                'user': 'user',
-                'myuser': 'myuser'
+                'user': user,
+                'myuser': myuser
             }
 
             template = JINJA_ENVIRONMENT.get_template('twitterhome.html')
@@ -64,17 +65,18 @@ class MainPage(webapp2.RequestHandler):
     def post(self):
         self.response.headers['Content-Type'] = 'text/html'
         action = self.request.get('button')
+        user = users.get_current_user()
         if action == 'SignUp':
             name = self.request.get('name')
-            bio = self.request.get('bio')
             dateofbirth = self.request.get('dateofbirth')
-            user = users.get_current_user
+            bio = self.request.get('bio')
 
             stweets = UserTweets.query().fetch()
 
             myuser_key = ndb.Key('MyUser', user.user_id())
             myuser = myuser_key.get()
-            myuser = MyUser(id=user.user_id(), name=name, bio=bio, dateofbirth=dateofbirth, followers=[], following=[])
+            myuser = MyUser(id=user.user_id(), name=name, dateofbirth=datetime.strptime(dateofbirth, '%Y-%m-%d').date(),
+                            bio=bio, followers=[], following=[])
             myuser.put()
             usertweets_key = ndb.Key('UserTweets', name)
             gettweets = usertweets_key.get()
@@ -104,11 +106,11 @@ class MainPage(webapp2.RequestHandler):
                         temp2 = temp[i].split(" ")
                         for j in temp2:
                             if (j in result):
-                                response.append(temp[i])
+                                search_tweet.append(temp[i])
                                 break;
 
                     template_values = {
-                        'search_tweet': response,
+                        'search_tweet': search_tweet,
                         'name_search': name_search
                     }
                     template = JINJA_ENVIRONMENT.get_template('twitterhome.html')

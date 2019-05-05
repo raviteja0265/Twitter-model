@@ -4,8 +4,6 @@ import webapp2
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
-from myuser import MyUser
-
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -30,7 +28,7 @@ class Edit(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         action = self.request.get('button')
         if action == 'Update':
-            user = users.get_curent_user()
+            user = users.get_current_user()
             myuser_key = ndb.Key('MyUser', user.user_id())
             myuser = myuser_key.get()
             myuser.name = self.request.get('username')

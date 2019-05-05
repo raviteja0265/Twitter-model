@@ -7,8 +7,18 @@
     body {
         background-color: #7eacf7;
     }
+    .header {
+        position: sticky;
+        margin: 0px;
+        color: #f9fafc;
+        background-color: #0c1b33;
+        text-align: center;
+    }
     </style>
     <body>
+        <div class="header">
+            <img src="C:/Users/raviteja/PycharmProjects/Assignment03/brackets/logo.png" alt="twitter logo" width="30" height="30"><br/>
+        </div>
         <form method="post" action="/profile">
             {% for i in userbio %}
             {{ i.name }}
