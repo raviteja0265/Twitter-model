@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Edit and Update tweet</title>
+        <meta charset="utf-8"/>
+    </head>
+    <style>
+    body {
+        background-color: #7eacf7;
+    }
+    </style>
+    <body>
+        Edit and Update your tweets below<br/>
+        <form method="post" action="/edittweet?tweet={{ i.usertweets }}">
+            <div>
+                <input type="text" name="tweet" value="{{ i.usertweets }}"/>
+            </div>
+            <input type="submit" value="Update" name="button"/>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Edit user information</title>
+        <meta charset="utf-9"/>
+    </head>
+    <style>
+    body {
+        margin: 40px;
+        text-align: center;
+        background-color: #7eacf7;
+    }
+    .name {
+        padding: 5px;
+        margin: 6px;
+    }
+    .bio {
+        margin: 8px 2px;
+    }
+    input[type=submit] {
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 10px 50px;
+        background-color: #8af7b0;
+    }
+    </style>
+    <body>
+        Edit and update user information here<br/>
+        <form method="post" action="/edit">
+            <div class="name">
+                Name: <input type="text" name="username" value="{{ myuser.name }}" readonly/><br/>
+                Date of birth: <input type="date" name="DOB" placeholder="dd/mm/yyyy"><br/>
+            </div>
+            <div class="bio">
+                Bio: <textarea type="text" name="userbio" placeholder="About Yourself" maxlength="280">
+                </textarea>
+            </div>
+
+            <input type="submit" value="Update" name="button"/>
+        </form>
+    </body>
+</html>
