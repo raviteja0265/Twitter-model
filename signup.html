@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>User Sign Up</title>
+        <meta charset="utf-8"/>
+    </head>
+    <style>
+    body {
+        background-color: #7eacf7;
+    }
+    h3 {
+        text-align: center;
+    }
+    </style>
+    <body>
+        <div>
+            <h3>New User Sign Up</h3>
+            <form method="post" action="/signup">
+                <div>
+                    username: <input type="text" name="name" placeholder="Username" required>
+                </div>
+                <div>
+                    DOB: <input type="date" name="DOB" placeholder="dd/mm/yyyy">
+                </div>
+                <div>
+                    <label>Bio:</label>
+                    <textarea type="text" name="Bio" maxlength="280" placeholder="About Yourself"></textarea>
+                </div>
+                <input type="submit" value="signup" name="button"/>
+            </form>
+        </div>
+        <br/>
+    </body>
+</html>

@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>Twitter user home page</title>
+        <meta charset="utf-8"/>
+    </head>
+    <style>
+    body {
+        background-color: #7eacf7;
+    }
+    h2 {
+        text-align: center;
+    }
+    .gallery {
+        text-align: center;
+    }
+    .right {
+        text-align: right;
+        padding: 20px;
+
+    }
+    .center {
+        box-sizing: border-box;
+    }
+    input[type=submit] {
+        background-color: #05ba83;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px 20px;
+    }
+    .bottom {
+        text-align: right;
+    }
+    </style>
+<body>
+    <div class="gallery">
+        <img src="twitter-logo.png" alt="twitter logo" width="100" height="100">
+    </div>
+
+    <div>
+        <h2>Welcome to Twitter</h2>
+        <br/>
+    </div>
+    {% if user %}
+    <p>welcome back {{ myuser.name }}</p><br/>
+    {% endif %}
+    <h4>To Edit and Update user information <a href="/edit">click here</a></h4>
+    <form method="post" action="/twitterhome">
+        <div class="right">
+            <input type="text" name="search" placeholder="Enter here"><br/>
+            <input type="submit" value="search" name="button"/>
+        </div>
+    </form>
+    <br/>
+
+    <form>
+        <div class="center">
+            tweet: <textarea type="text" name="tweet" maxlength="280" placeholder="Add your tweet here"></textarea>
+        <input type="submit" name="button" value="Tweet"/>
+        </div>
+    </form>
+    <br/>
+
+    {% for i in usertweets %}
+    Tweets:{{ loop.index }}<br/>
+    name:{{ i.name }}<br/>
+    <a href="/edit?tweet={{ i.tweets }}">tweet: {{ i.tweets }}</a><br/>
+    <form action="/" method="post">
+        <input type="hidden" name="index" value="{{ loop.index-1 }}"/>
+        <input type="submit" value="Delete" name="button"/>
+    </form>
+    {% endfor %}
+
+    <div>
+        {% for search in search_name %}
+        <div>
+            Search Result
+        </div>
+        <div>
+            <h4><a href="/profile?name={{ search.name }}">{{ search.name }}</a></h4>
+        </div>
+    </div>
+    {% endfor %}
+    {% for i in search_tweet %}
+    <div>
+        <p>{{ i }}</p>
+    </div>
+    {% endfor %}
+    <div class="bottom">
+        Goodbye, You can logout <a href="{{ logout_url }}">Here</a>
+    </div>
+</body>
+</html>

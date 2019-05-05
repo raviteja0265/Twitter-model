@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>User profile</title>
+        <meta charset="utf-8"/>
+    </head>
+    <style>
+    body {
+        background-color: #7eacf7;
+    }
+    </style>
+    <body>
+        <form method="post" action="/profile">
+            {% for i in userbio %}
+            {{ i.name }}
+            {{ i.bio }}
+
+            {{ currentuser_tweets}}
+            <div>
+                <input type="hidden" name="name" value="{{ currentuser_name }}">
+                <input type="hidden" name="bio" value="{{ currentuser_bio }}">
+                <input type="hidden" name="tweetname" value="{{ currentuser_tweets }}">
+                <input type="hidden" name="following" value="{{ i.name }}">
+                <input type="hidden" name="index" value="{{ loop.index-1 }}"/>
+            </div>
+            {% if followBool == True %}
+            <input type="submit" class="btn btn-primary" name="button" value="Follow"/>
+            {% else %}
+            <input type="submit" class="btn btn-default" name="button" value="Unfollow"/>
+            {% endif %}
+        </form>
+    </body>
+</html>
